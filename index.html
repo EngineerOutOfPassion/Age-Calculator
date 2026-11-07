@@ -8,14 +8,17 @@
   <style>
     :root {
       color-scheme: light;
-      --ink: #17233c;
+      --ink: #15213d;
+      --ink-soft: #475574;
       --muted: #64718a;
       --blue: #405cf5;
       --blue-dark: #293bb5;
-      --line: #e4e9f4;
+      --line: #e7ecf8;
+      --shadow: 0 24px 70px rgba(27, 43, 94, 0.12);
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -23,19 +26,18 @@
       display: flex;
       flex-direction: column;
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background:
-        radial-gradient(ellipse at 12% 10%, rgba(128, 150, 255, .2), transparent 34%),
-        radial-gradient(ellipse at 90% 85%, rgba(77, 201, 188, .16), transparent 33%),
-        #f6f8fc;
+        radial-gradient(circle at top left, rgba(98, 122, 255, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(59, 194, 162, 0.14), transparent 28%),
+        #f5f8ff;
     }
 
     header {
-      padding: 22px 20px 16px;
+      padding: 22px 20px 18px;
       color: white;
-      text-align: center;
-      background: linear-gradient(115deg, #202f69, #435cf5);
-      box-shadow: 0 8px 26px rgba(37, 58, 143, .16);
+      background: linear-gradient(120deg, #1d2d5b 0%, #2f4fcf 48%, #3d5af5 100%);
+      box-shadow: 0 10px 28px rgba(44, 67, 149, 0.18);
     }
 
     .top-nav {
@@ -46,8 +48,8 @@
       justify-content: space-between;
       gap: 12px;
       padding: 8px 12px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 14px;
       backdrop-filter: blur(8px);
     }
@@ -57,7 +59,7 @@
       text-decoration: none;
       font-size: 1rem;
       font-weight: 800;
-      letter-spacing: -.04em;
+      letter-spacing: -0.04em;
     }
 
     .nav-links {
@@ -69,41 +71,33 @@
 
     .nav-links a {
       padding: 7px 10px;
-      color: rgba(255,255,255,.88);
-      font-size: .88rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.88rem;
       font-weight: 700;
       text-decoration: none;
       border-radius: 9px;
-      transition: background .2s ease, color .2s ease;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
     .nav-links a:hover,
     .nav-links a[aria-current="page"] {
-      background: rgba(255,255,255,.12);
+      background: rgba(255,255,255,0.12);
       color: white;
+      transform: translateY(-1px);
     }
 
-    .title-wrap {
-      width: min(100%, 720px);
-      margin: 0 auto;
-    }
-
-    header h1 {
-      margin: 0 0 5px;
-      font-size: clamp(1.7rem, 4vw, 2.25rem);
-      letter-spacing: -.045em;
-    }
-
-    header p { margin: 0; color: rgba(255,255,255,.82); }
+    .title-wrap { width: min(100%, 760px); margin: 0 auto; text-align: center; }
+    header h1 { margin: 0 0 6px; font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.05em; line-height: 1.1; }
+    header p { margin: 0; color: rgba(255,255,255,0.82); }
 
     main {
-      width: min(100% - 32px, 650px);
+      width: min(100% - 32px, 690px);
       margin: auto;
       padding: clamp(24px, 5vw, 42px);
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(255,255,255,.9);
-      border-radius: 24px;
-      box-shadow: 0 24px 70px rgba(37, 58, 105, .12);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
     }
 
     .eyebrow {
@@ -112,9 +106,9 @@
       gap: 8px;
       margin: 0 0 14px;
       color: var(--blue-dark);
-      font-size: .76rem;
+      font-size: 0.76rem;
       font-weight: 800;
-      letter-spacing: .12em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
@@ -122,63 +116,62 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #52c3a6;
+      background: #3bc2a2;
+      box-shadow: 0 0 0 6px rgba(59,194,162,0.12);
       content: "";
     }
 
-    .intro h2 {
-      margin: 0 0 9px;
-      font-size: clamp(1.8rem, 4vw, 2.45rem);
-      letter-spacing: -.055em;
-    }
-
-    .intro p { margin: 0; color: var(--muted); line-height: 1.6; }
-
+    .intro h2 { margin: 0 0 10px; font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.055em; line-height: 1.05; }
+    .intro p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 1.02rem; }
     .field { margin-top: 28px; }
 
     label {
       display: block;
       margin-bottom: 10px;
-      font-size: .92rem;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
       font-weight: 700;
     }
 
     input {
       width: 100%;
-      min-height: 54px;
+      min-height: 56px;
       padding: 13px 15px;
       color: var(--ink);
       font: inherit;
       background: #fbfcff;
-      border: 1px solid #dce3f0;
-      border-radius: 12px;
-      transition: border-color .2s, box-shadow .2s, background .2s;
+      border: 1px solid #d9e1f5;
+      border-radius: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
     input:focus-visible {
       outline: none;
       background: white;
       border-color: var(--blue);
-      box-shadow: 0 0 0 4px rgba(64, 92, 245, .13);
+      box-shadow: 0 0 0 4px rgba(64,92,245,0.13);
     }
+
+    .helper { margin-top: 10px; color: var(--muted); font-size: 0.82rem; }
 
     button {
       width: 100%;
-      min-height: 55px;
-      margin-top: 18px;
+      min-height: 58px;
+      margin-top: 20px;
       padding: 14px 18px;
       color: white;
       font: inherit;
-      font-weight: 750;
+      font-weight: 800;
+      letter-spacing: 0.01em;
       border: 0;
-      border-radius: 12px;
-      background: linear-gradient(110deg, var(--blue), #6977ff);
-      box-shadow: 0 10px 20px rgba(64, 92, 245, .2);
+      border-radius: 14px;
+      background: linear-gradient(120deg, var(--blue), #6977ff);
+      box-shadow: 0 10px 20px rgba(64,92,245,0.2);
       cursor: pointer;
-      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
     }
 
-    button:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 14px 24px rgba(64, 92, 245, .25); }
+    button:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 14px 24px rgba(64,92,245,0.25); }
     button:active { transform: translateY(0); }
     button:focus-visible { outline: 3px solid #aeb8ff; outline-offset: 3px; }
 
@@ -187,65 +180,41 @@
       margin-top: 28px;
       padding: 24px;
       text-align: center;
-      background: linear-gradient(145deg, #f3f6ff, #f8fbff);
-      border: 1px solid #e4eaff;
-      border-radius: 18px;
+      background: linear-gradient(145deg, #edf4ff, #f8fbff);
+      border: 1px solid #e4ecff;
+      border-radius: 20px;
     }
 
-    #result h2 { margin: 0 0 8px; color: var(--blue-dark); font-size: 1.15rem; }
-    #age { margin: 0 0 20px; font-size: clamp(1.55rem, 5vw, 2.25rem); letter-spacing: -.05em; }
-
+    #result h2 { margin: 0 0 8px; color: var(--blue-dark); font-size: 1.05rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    #age { margin: 0 0 22px; font-size: clamp(1.75rem, 5vw, 2.55rem); letter-spacing: -0.05em; line-height: 1.1; }
     .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 
     .stat {
       padding: 16px 12px;
       color: var(--muted);
-      font-size: .85rem;
+      font-size: 0.85rem;
       font-weight: 650;
-      background: white;
+      background: rgba(255,255,255,0.88);
       border: 1px solid var(--line);
-      border-radius: 13px;
-      box-shadow: 0 5px 14px rgba(38, 58, 105, .04);
+      border-radius: 14px;
+      box-shadow: 0 5px 14px rgba(38,58,105,0.04);
     }
 
-    .stat strong { display: block; margin-top: 7px; color: var(--ink); font-size: clamp(1.2rem, 3vw, 1.55rem); letter-spacing: -.035em; }
-
-    footer { padding: 20px; color: var(--muted); text-align: center; font-size: .88rem; }
+    .stat strong { display: block; margin-top: 7px; color: var(--ink); font-size: clamp(1.15rem, 3vw, 1.55rem); letter-spacing: -0.035em; }
+    footer { padding: 20px; color: var(--muted); text-align: center; font-size: 0.88rem; }
     footer p { margin: 0; }
-    .footer-links {
-      margin-top: 8px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    footer a {
-      color: var(--blue-dark);
-      text-decoration: none;
-      font-weight: 700;
-    }
+    .footer-links { margin-top: 8px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+    footer a { color: var(--blue-dark); text-decoration: none; font-weight: 700; }
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 720px) {
-      main {
-        width: min(100% - 20px, 650px);
-        margin: 24px auto;
-        padding: 22px 18px;
-        border-radius: 20px;
-      }
-
-      .intro h2 { line-height: 1.1; }
-      .stats { grid-template-columns: 1fr 1fr; }
+      main { width: min(100% - 20px, 650px); margin: 24px auto; padding: 22px 18px; border-radius: 20px; }
+      .intro h2 { line-height: 1.12; }
     }
 
     @media (max-width: 540px) {
-      .top-nav {
-        flex-direction: column;
-        align-items: center;
-      }
-      .nav-links {
-        width: 100%;
-      }
+      .top-nav { flex-direction: column; align-items: center; }
+      .nav-links { width: 100%; }
       header { padding: 18px 14px 14px; }
       main { width: min(100% - 16px, 650px); margin: 18px auto; padding: 20px 14px; border-radius: 18px; }
       #result { padding: 20px 14px; }
@@ -254,7 +223,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -271,7 +240,6 @@
         <a href="terms.html">Terms</a>
       </div>
     </nav>
-
     <div class="title-wrap">
       <h1>Age Calculator</h1>
       <p>Calculate your exact age in years, months and days</p>
@@ -287,7 +255,8 @@
 
     <div class="field">
       <label for="dob">Your date of birth</label>
-      <input type="date" id="dob" autocomplete="bday">
+      <input type="date" id="dob" autocomplete="bday" aria-describedby="dob-help">
+      <div id="dob-help" class="helper">We use your local date to calculate exact age.</div>
     </div>
 
     <button id="calculateBtn" type="button">Calculate my age</button>
@@ -307,14 +276,10 @@
   <footer>
     <p>Free Age Calculator <span aria-hidden="true">·</span> Your age, at a glance</p>
     <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html">Calculator</a>
-      <span aria-hidden="true">·</span>
-      <a href="about.html">About</a>
-      <span aria-hidden="true">·</span>
-      <a href="Contact.html">Contact</a>
-      <span aria-hidden="true">·</span>
-      <a href="privacy.html">Privacy</a>
-      <span aria-hidden="true">·</span>
+      <a href="index.html">Calculator</a><span aria-hidden="true">·</span>
+      <a href="about.html">About</a><span aria-hidden="true">·</span>
+      <a href="Contact.html">Contact</a><span aria-hidden="true">·</span>
+      <a href="privacy.html">Privacy</a><span aria-hidden="true">·</span>
       <a href="terms.html">Terms</a>
     </nav>
   </footer>
@@ -322,7 +287,6 @@
   <script>
     function calculateAge() {
       const input = document.getElementById("dob").value;
-
       if (!input) {
         alert("Please select your date of birth.");
         return;
@@ -331,46 +295,43 @@
       const [year, month, day] = input.split("-").map(Number);
       const dob = new Date(year, month - 1, day);
       const today = new Date();
-      today.setHours(0, 0, 0, 0);
+      const todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-      if (Number.isNaN(dob.getTime())) {
+      if (Number.isNaN(dob.getTime()) || dob.getFullYear() !== year || dob.getMonth() !== month - 1 || dob.getDate() !== day) {
         alert("Please enter a valid date of birth.");
         return;
       }
 
-      if (dob > today) {
+      if (dob > todayStart) {
         alert("Date of birth cannot be in the future.");
         return;
       }
 
-      let years = today.getFullYear() - year;
-      let months = today.getMonth() + 1 - month;
-      let days = today.getDate() - day;
+      let years = todayStart.getFullYear() - dob.getFullYear();
+      let months = todayStart.getMonth() - dob.getMonth();
+      let days = todayStart.getDate() - dob.getDate();
 
       if (days < 0) {
+        days += new Date(todayStart.getFullYear(), todayStart.getMonth(), 0).getDate();
         months--;
-        const previousMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-        days += previousMonthDays;
       }
-
       if (months < 0) {
         years--;
         months += 12;
       }
 
       const totalMonths = years * 12 + months;
-      const utcDob = Date.UTC(year, month - 1, day);
-      const utcToday = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+      const utcDob = Date.UTC(dob.getFullYear(), dob.getMonth(), dob.getDate());
+      const utcToday = Date.UTC(todayStart.getFullYear(), todayStart.getMonth(), todayStart.getDate());
       const totalDays = Math.round((utcToday - utcDob) / 86400000);
       const weekday = dob.toLocaleDateString("en-IN", { weekday: "long" });
 
-      let nextYear = today.getFullYear();
-      const nextMonth = month - 1;
-      const birthdayThisYear = new Date(nextYear, nextMonth, day);
-      if (birthdayThisYear < today) nextYear++;
-
-      const nextBirthdayDay = month === 2 && day === 29 && !isLeapYear(nextYear) ? 28 : day;
-      const nextBirthday = new Date(nextYear, nextMonth, nextBirthdayDay);
+      let nextYear = todayStart.getFullYear();
+      const monthIndex = dob.getMonth();
+      const birthdayThisYear = new Date(nextYear, monthIndex, dob.getDate());
+      if (birthdayThisYear < todayStart) nextYear++;
+      const nextDay = monthIndex === 1 && dob.getDate() === 29 && !isLeapYear(nextYear) ? 28 : dob.getDate();
+      const nextBirthday = new Date(nextYear, monthIndex, nextDay);
       const daysUntil = Math.round((Date.UTC(nextBirthday.getFullYear(), nextBirthday.getMonth(), nextBirthday.getDate()) - utcToday) / 86400000);
 
       document.getElementById("age").textContent = `${years} Years, ${months} Months, ${days} Days`;
@@ -379,6 +340,7 @@
       document.getElementById("weekday").textContent = weekday;
       document.getElementById("birthday").textContent = daysUntil === 0 ? "Today!" : `${daysUntil} days`;
       document.getElementById("result").style.display = "block";
+      document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
     function isLeapYear(year) {
@@ -388,7 +350,8 @@
     const dobInput = document.getElementById("dob");
     const calculateBtn = document.getElementById("calculateBtn");
     const today = new Date();
-    dobInput.max = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString().split("T")[0];
+    const todayLocal = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    dobInput.max = `${todayLocal.getFullYear()}-${String(todayLocal.getMonth() + 1).padStart(2, "0")}-${String(todayLocal.getDate()).padStart(2, "0")}`;
     calculateBtn.addEventListener("click", calculateAge);
     dobInput.addEventListener("keydown", function (event) {
       if (event.key === "Enter") calculateAge();
