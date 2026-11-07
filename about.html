@@ -1,60 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Age Calculator</title>
-    <meta name="description" content="Learn about our free Age Calculator and our goal of making everyday calculations simple and accessible.">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 20px;
-            line-height: 1.7;
-            color: #333;
-            background: #f8f9fc;
-        }
-        main {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-        }
-        h1, h2 { color: #2457a7; }
-        a { color: #2457a7; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About This Age Calculator</title>
+  <meta name="description" content="Learn what the free Age Calculator shows and how it calculates your age from your date of birth.">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17233c;
+      --muted: #64718a;
+      --blue: #405cf5;
+      --blue-dark: #293bb5;
+      --line: #e4e9f4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px 16px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(ellipse at 12% 10%, rgba(128, 150, 255, .2), transparent 34%),
+        radial-gradient(ellipse at 90% 85%, rgba(77, 201, 188, .16), transparent 33%),
+        #f6f8fc;
+    }
+
+    main {
+      width: min(100%, 760px);
+      padding: clamp(24px, 5vw, 42px);
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(37, 58, 105, .12);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2 { letter-spacing: -.035em; }
+    h1 { margin: 0 0 14px; font-size: clamp(2rem, 5vw, 2.7rem); line-height: 1.15; }
+    h2 { margin: 28px 0 8px; font-size: 1.2rem; }
+    p { margin: 0 0 14px; color: var(--muted); }
+    ul { margin: 0 0 18px; padding-left: 1.25rem; color: var(--muted); }
+    li { padding-left: 4px; margin: 6px 0; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 12px;
+      padding: 12px 17px;
+      color: white;
+      font-weight: 750;
+      text-decoration: none;
+      background: linear-gradient(110deg, var(--blue), #6977ff);
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(64, 92, 245, .2);
+    }
+
+    .back-link:hover { filter: brightness(1.05); }
+    .back-link:focus-visible { outline: 3px solid #aeb8ff; outline-offset: 3px; }
+
+    @media (max-width: 480px) {
+      body { padding: 14px 10px; }
+      main { padding: 24px 18px; border-radius: 18px; }
+    }
+  </style>
 </head>
 <body>
-<main>
-    <h1>About Us</h1>
+  <main>
+    <p class="eyebrow">About the tool</p>
+    <h1>About This Age Calculator</h1>
 
-    <p>Welcome to our Age Calculator website!</p>
+    <p>This free age calculator helps you find out how much time has passed since your date of birth. It is designed to make a common date calculation quick and easy to understand.</p>
 
-    <p>Our goal is to make everyday date and age
-    calculations simple, quick and accessible to everyone.</p>
+    <h2>What it calculates</h2>
+    <p>Enter your date of birth to see your age in years, months, and days. The result also includes:</p>
+    <ul>
+      <li>Your total age in months and days</li>
+      <li>The weekday you were born</li>
+      <li>The number of days until your next birthday</li>
+    </ul>
 
-    <h2>What We Offer</h2>
+    <h2>How it works</h2>
+    <p>The calculator performs the age calculation in your browser using the date you enter and your device’s current calendar date. It checks that a date is provided and does not allow a future date of birth.</p>
 
-    <p>Our Age Calculator helps users calculate their
-    age in years, months and days using their date of birth.</p>
+    <h2>Designed to be easy to use</h2>
+    <p>The calculator is built to work across desktop and mobile screens, with a straightforward form and clearly presented results. It is intended for everyday information and should not be used as an official record or substitute for legal, medical, or other professional advice.</p>
 
-    <p>We aim to develop more practical online tools
-    that help people solve everyday calculation needs
-    without complicated steps.</p>
-
-    <h2>Our Mission</h2>
-
-    <p>We believe useful online tools should be easy
-    to understand, convenient to use and accessible
-    across different devices.</p>
-
-    <h2>Our Commitment</h2>
-
-    <p>We aim to improve our tools, provide clear
-    information and make our website more useful
-    based on visitors' needs.</p>
-
-    <p><a href="index.html">Back to Age Calculator</a></p>
-</main>
+    <a class="back-link" href="index.html">Back to Age Calculator</a>
+  </main>
 </body>
 </html>
