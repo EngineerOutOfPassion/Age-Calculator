@@ -8,10 +8,7 @@
   <style>
     :root {
       --bg: #f4f7fb;
-      --bg-strong: #ebf1ff;
       --panel: rgba(255, 255, 255, 0.9);
-      --panel-strong: #ffffff;
-      --card: #ffffff;
       --ink: #17233d;
       --ink-soft: #4c5d7a;
       --muted: #6d7d99;
@@ -26,7 +23,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -149,9 +145,7 @@
       backdrop-filter: blur(10px);
     }
 
-    .intro {
-      margin-bottom: 12px;
-    }
+    .intro { margin-bottom: 12px; }
 
     .eyebrow {
       display: inline-flex;
@@ -188,9 +182,7 @@
       font-size: 1rem;
     }
 
-    .field {
-      margin-top: 26px;
-    }
+    .field { margin-top: 26px; }
 
     label {
       display: block;
@@ -219,11 +211,7 @@
       background: rgba(255,255,255,0.96);
     }
 
-    .helper {
-      margin-top: 9px;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
+    .helper { margin-top: 9px; color: var(--muted); font-size: 0.8rem; }
 
     button {
       width: 100%;
@@ -241,18 +229,9 @@
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
     }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 26px rgba(67, 102, 255, 0.25);
-      filter: brightness(1.03);
-    }
-
+    button:hover { transform: translateY(-2px); box-shadow: 0 18px 26px rgba(67, 102, 255, 0.25); filter: brightness(1.03); }
     button:active { transform: translateY(0); }
-
-    button:focus-visible {
-      outline: 3px solid rgba(170, 181, 255, 0.9);
-      outline-offset: 3px;
-    }
+    button:focus-visible { outline: 3px solid rgba(170, 181, 255, 0.9); outline-offset: 3px; }
 
     #result {
       display: none;
@@ -274,18 +253,8 @@
       font-weight: 800;
     }
 
-    #age {
-      margin: 0 0 20px;
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      line-height: 1.1;
-      letter-spacing: -0.05em;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
+    #age { margin: 0 0 20px; font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.05em; }
+    .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 
     .stat {
       padding: 16px 12px;
@@ -298,62 +267,90 @@
       font-weight: 700;
     }
 
-    .stat strong {
-      display: block;
-      margin-top: 8px;
-      color: var(--ink);
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      letter-spacing: -0.04em;
+    .stat strong { display: block; margin-top: 8px; color: var(--ink); font-size: clamp(1.1rem, 3vw, 1.5rem); letter-spacing: -0.04em; }
+
+    .faq {
+      width: min(100%, 760px);
+      margin: 34px auto 0;
+      padding: clamp(22px, 4vw, 32px);
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
     }
 
-    footer {
-      padding: 22px 8px 4px;
-      color: var(--muted);
-      text-align: center;
-      font-size: 0.88rem;
+    .faq-heading { margin-bottom: 20px; }
+    .faq-heading .eyebrow { margin-bottom: 10px; }
+    .faq-heading h2 { margin: 0 0 8px; font-size: clamp(1.65rem, 3vw, 2rem); letter-spacing: -0.045em; }
+    .faq-heading p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+    .faq-list { display: grid; gap: 10px; }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.82);
+      overflow: hidden;
     }
 
-    footer p {
+    .faq-item summary {
+      position: relative;
+      padding: 17px 48px 17px 18px;
+      color: var(--ink-soft);
+      font-weight: 750;
+      line-height: 1.45;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 18px;
+      color: var(--blue);
+      font-size: 1.35rem;
+      font-weight: 500;
+      transform: translateY(-50%);
+    }
+
+    .faq-item[open] summary::after { content: "−"; }
+    .faq-item summary:focus-visible { outline: 3px solid rgba(67,102,255,0.25); outline-offset: -3px; }
+
+    .faq-answer {
       margin: 0;
+      padding: 0 18px 17px;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
-    .footer-links {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    footer a {
-      color: var(--blue-dark);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
+    footer { padding: 22px 8px 4px; color: var(--muted); text-align: center; font-size: 0.88rem; }
+    footer p { margin: 0; }
+    .footer-links { margin-top: 10px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+    footer a { color: var(--blue-dark); text-decoration: none; font-weight: 700; }
     footer a:hover { text-decoration: underline; }
 
     @media (max-width: 720px) {
       .page-shell { padding: 18px 12px 32px; }
-      .top-nav {
-        flex-direction: column;
-        align-items: center;
-      }
+      .top-nav { flex-direction: column; align-items: center; }
       .nav-links { width: 100%; }
       main { margin-top: -10px; }
+      .faq { margin-top: 24px; }
     }
 
     @media (max-width: 540px) {
       .stats { grid-template-columns: 1fr; }
       .nav-links { gap: 4px; }
       .nav-links a { padding: 7px 9px; }
+      .faq-item summary { padding-left: 14px; }
+      .faq-answer { padding-left: 14px; padding-right: 14px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -403,6 +400,46 @@
         </div>
       </section>
     </main>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="faq-heading">
+        <p class="eyebrow">Helpful answers</p>
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <p>Quick answers about calculating your age and using this tool.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is this age calculator free to use?</summary>
+          <p class="faq-answer">Yes. You can use the age calculator for free, with no account required.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I calculate my exact age?</summary>
+          <p class="faq-answer">Choose your date of birth and select “Calculate my age.” The result shows your age in years, months, and days, along with your total months, total days, weekday of birth, and days until your next birthday.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does the calculator account for leap years and different month lengths?</summary>
+          <p class="faq-answer">Yes. The calculation uses calendar dates, including different month lengths and leap years, to determine the elapsed time and your next birthday.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I calculate another person's age?</summary>
+          <p class="faq-answer">Yes. Enter any valid date of birth that is not in the future to calculate that person's age.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is my date of birth stored or sent anywhere?</summary>
+          <p class="faq-answer">The calculator performs the calculation in your browser and does not send your date of birth to a server. For information about the website more generally, please see our <a href="privacy.html">Privacy Policy</a>.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>How is “days until next birthday” calculated?</summary>
+          <p class="faq-answer">It counts the calendar days from today to your next birthday. For a February 29 birthday in a non-leap year, this calculator observes the birthday on February 28.</p>
+        </details>
+      </div>
+    </section>
 
     <footer>
       <p>Free Age Calculator <span aria-hidden="true">·</span> Your age, at a glance</p>
