@@ -163,11 +163,28 @@
     footer { padding: 20px; color: var(--muted); text-align: center; font-size: .88rem; }
     footer p { margin: 0; }
 
+    @media (max-width: 720px) {
+      main {
+        width: min(100% - 20px, 650px);
+        margin: 24px auto;
+        padding: 22px 18px;
+        border-radius: 20px;
+      }
+
+      .intro h2 {
+        line-height: 1.1;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 480px) {
       header { padding: 20px 16px; }
-      main { width: min(100% - 24px, 650px); margin: 28px auto; padding: 24px 18px; border-radius: 20px; }
+      main { width: min(100% - 16px, 650px); margin: 18px auto; padding: 20px 14px; border-radius: 18px; }
       #result { padding: 20px 14px; }
-      .stats { gap: 9px; }
+      .stats { grid-template-columns: 1fr; gap: 9px; }
       .stat { padding: 14px 8px; }
     }
 
