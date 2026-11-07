@@ -129,19 +129,10 @@
       background: linear-gradient(110deg, var(--blue), #6977ff);
       border-radius: 12px;
       box-shadow: 0 10px 20px rgba(64, 92, 245, .2);
-      transition: transform .18s ease, box-shadow .18s ease;
     }
 
-    .back-link:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 13px 24px rgba(64, 92, 245, .25);
-    }
-
-    a:focus-visible {
-      outline: 3px solid #aeb8ff;
-      outline-offset: 3px;
-      border-radius: 6px;
-    }
+    .back-link:hover { filter: brightness(1.05); }
+    .back-link:focus-visible { outline: 3px solid #aeb8ff; outline-offset: 3px; }
 
     @media (max-width: 480px) {
       body { padding: 14px 10px; }
@@ -160,7 +151,7 @@
 <body>
   <main>
     <p class="eyebrow">We’re here to help</p>
-    <h1>Contact us</h1>
+    <h1>Contact Us</h1>
     <p class="intro">Have a question, spotted something that could work better, or have an idea for a useful tool? We’d be happy to hear from you.</p>
 
     <div class="contact-panel">
