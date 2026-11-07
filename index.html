@@ -114,7 +114,7 @@ footer {
   <label for="dob">Date of Birth</label>
   <input type="date" id="dob">
 
-  <button onclick="calculateAge()">Calculate Age</button>
+  <button id="calculateBtn" type="button">Calculate Age</button>
 
   <div id="result" aria-live="polite">
     <h2>Your Exact Age</h2>
@@ -155,10 +155,14 @@ function calculateAge() {
   }
 
   const [year, month, day] = input.split("-").map(Number);
-
   const dob = new Date(year, month - 1, day);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+
+  if (Number.isNaN(dob.getTime())) {
+    alert("Please enter a valid date of birth.");
+    return;
+  }
 
   if (dob > today) {
     alert("Date of birth cannot be in the future.");
@@ -171,8 +175,7 @@ function calculateAge() {
 
   if (days < 0) {
     months--;
-    const previousMonthDays =
-      new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    const previousMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
     days += previousMonthDays;
   }
 
@@ -184,15 +187,8 @@ function calculateAge() {
   const totalMonths = years * 12 + months;
 
   const utcDob = Date.UTC(year, month - 1, day);
-  const utcToday = Date.UTC(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
-  );
-
-  const totalDays = Math.round(
-    (utcToday - utcDob) / 86400000
-  );
+  const utcToday = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+  const totalDays = Math.round((utcToday - utcDob) / 86400000);
 
   const weekday = dob.toLocaleDateString("en-IN", {
     weekday: "long"
@@ -200,52 +196,41 @@ function calculateAge() {
 
   let nextYear = today.getFullYear();
   let nextMonth = month - 1;
-
   const birthdayThisYear = new Date(nextYear, nextMonth, day);
 
   if (birthdayThisYear < today) {
     nextYear++;
   }
 
-  // Handle February 29 in non-leap years
   const nextBirthdayDay =
-    month === 2 && day === 29 &&
-    !isLeapYear(nextYear) ? 28 : day;
+    month === 2 && day === 29 && !isLeapYear(nextYear) ? 28 : day;
 
-  const nextBirthday = new Date(
-    nextYear, nextMonth, nextBirthdayDay
-  );
-
+  const nextBirthday = new Date(nextYear, nextMonth, nextBirthdayDay);
   const daysUntil = Math.round(
-    (Date.UTC(nextBirthday.getFullYear(),
+    (Date.UTC(
+      nextBirthday.getFullYear(),
       nextBirthday.getMonth(),
-      nextBirthday.getDate()) - utcToday) / 86400000
+      nextBirthday.getDate()
+    ) - utcToday) / 86400000
   );
 
-  document.getElementById("age").textContent =
-    ${years} Years, ${months} Months, ${days} Days;
-
-  document.getElementById("months").textContent =
-    totalMonths.toLocaleString("en-IN");
-
-  document.getElementById("days").textContent =
-    totalDays.toLocaleString("en-IN");
-
+  document.getElementById("age").textContent = `${years} Years, ${months} Months, ${days} Days`;
+  document.getElementById("months").textContent = totalMonths.toLocaleString("en-IN");
+  document.getElementById("days").textContent = totalDays.toLocaleString("en-IN");
   document.getElementById("weekday").textContent = weekday;
-
-  document.getElementById("birthday").textContent =
-    daysUntil === 0 ? "Today!" : `${daysUntil} days`;
-
+  document.getElementById("birthday").textContent = daysUntil === 0 ? "Today!" : `${daysUntil} days`;
   document.getElementById("result").style.display = "block";
 }
 
 function isLeapYear(year) {
-  return year % 4 === 0 &&
-    (year % 100 !== 0 || year % 400 === 0);
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
 }
 
-document.getElementById("dob").max =
-  new Date().toLocaleDateString("en-CA");
+const dobInput = document.getElementById("dob");
+const calculateBtn = document.getElementById("calculateBtn");
+
+dobInput.max = new Date().toLocaleDateString("en-CA");
+calculateBtn.addEventListener("click", calculateAge);
 </script>
 
 </body>
