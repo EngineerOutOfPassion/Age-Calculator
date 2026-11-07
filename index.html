@@ -162,6 +162,12 @@
 
     footer { padding: 20px; color: var(--muted); text-align: center; font-size: .88rem; }
     footer p { margin: 0; }
+    footer a {
+      color: var(--blue-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    footer a:hover { text-decoration: underline; }
 
     @media (max-width: 720px) {
       main {
@@ -226,7 +232,10 @@
     </section>
   </main>
 
-  <footer><p>Free Age Calculator <span aria-hidden="true">·</span> Your age, at a glance</p></footer>
+  <footer>
+    <p>Free Age Calculator <span aria-hidden="true">·</span> Your age, at a glance</p>
+    <p><a href="about.html">About</a></p>
+  </footer>
 
   <script>
     function calculateAge() {
