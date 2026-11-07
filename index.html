@@ -234,7 +234,7 @@ function calculateAge() {
   document.getElementById("weekday").textContent = weekday;
 
   document.getElementById("birthday").textContent =
-    daysUntil === 0 ? "Today!" : ${daysUntil} days;
+    daysUntil === 0 ? "Today!" : `${daysUntil} days`;
 
   document.getElementById("result").style.display = "block";
 }
