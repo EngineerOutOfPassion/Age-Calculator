@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f8fc">
   <title>About This Age Calculator</title>
   <meta name="description" content="Learn what the free Age Calculator shows and how it calculates your age from your date of birth.">
   <style>
@@ -13,6 +14,9 @@
       --blue: #405cf5;
       --blue-dark: #293bb5;
       --line: #e4e9f4;
+      --surface: #fff;
+      --soft: #f3f6ff;
+      --soft-strong: #e9edff;
     }
 
     * { box-sizing: border-box; }
@@ -76,6 +80,11 @@
     @media (max-width: 480px) {
       body { padding: 14px 10px; }
       main { padding: 24px 18px; border-radius: 18px; }
+      .back-link { width: 100%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
     }
   </style>
 </head>
