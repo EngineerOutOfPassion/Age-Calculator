@@ -1,160 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#f6f8fc">
-    <meta name="description" content="Get in touch with the Age Calculator team with questions, feedback, or suggestions.">
-    <title>Contact Us | Age Calculator</title>
-    <style>
-        :root {
-            color-scheme: light;
-            --ink: #17233c;
-            --muted: #64718a;
-            --blue: #405cf5;
-            --blue-dark: #293bb5;
-            --line: #e4e9f4;
-            --surface: #fff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f8fc">
+  <meta name="description" content="Get in touch with the Age Calculator team with questions, feedback, or suggestions.">
+  <title>Contact Us | Age Calculator</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17233c;
+      --muted: #64718a;
+      --blue: #405cf5;
+      --blue-dark: #293bb5;
+      --line: #e4e9f4;
+      --surface: #fff;
+      --soft: #f3f6ff;
+      --soft-strong: #e9edff;
+    }
 
-        * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-        body {
-            min-height: 100vh;
-            margin: 0;
-            padding: 24px 16px;
-            display: grid;
-            place-items: center;
-            color: var(--ink);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            line-height: 1.65;
-            background:
-                radial-gradient(ellipse at 12% 10%, rgba(128, 150, 255, .2), transparent 34%),
-                radial-gradient(ellipse at 90% 85%, rgba(77, 201, 188, .16), transparent 33%),
-                #f6f8fc;
-        }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px 16px;
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      background:
+        radial-gradient(ellipse at 12% 10%, rgba(128, 150, 255, .2), transparent 34%),
+        radial-gradient(ellipse at 90% 85%, rgba(77, 201, 188, .16), transparent 33%),
+        #f6f8fc;
+    }
 
-        main {
-            width: min(100%, 760px);
-            padding: clamp(24px, 5vw, 44px);
-            background: rgba(255, 255, 255, .96);
-            border: 1px solid rgba(255, 255, 255, .9);
-            border-radius: 24px;
-            box-shadow: 0 24px 70px rgba(37, 58, 105, .12);
-        }
+    main {
+      width: min(100%, 760px);
+      padding: clamp(24px, 5vw, 42px);
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid rgba(255, 255, 255, .9);
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(37, 58, 105, .12);
+    }
 
-        .eyebrow {
-            margin: 0 0 10px;
-            color: var(--blue-dark);
-            font-size: .76rem;
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-        }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
 
-        h1, h2 { letter-spacing: -.035em; }
-        h1 { margin: 0 0 12px; font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.15; }
-        h2 { margin: 0 0 8px; font-size: 1.15rem; }
-        p { color: var(--muted); }
-        .intro { max-width: 58ch; margin: 0 0 26px; font-size: 1.05rem; }
+    h1, h2 { letter-spacing: -.035em; }
+    h1 { margin: 0 0 14px; font-size: clamp(2rem, 5vw, 2.7rem); line-height: 1.15; }
+    h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    p { margin: 0 0 14px; color: var(--muted); }
 
-        .contact-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: clamp(18px, 4vw, 26px);
-            background: linear-gradient(135deg, #f3f5ff, #f6fbff);
-            border: 1px solid #e5eaff;
-            border-radius: 18px;
-        }
+    .intro {
+      max-width: 60ch;
+      margin: 0 0 24px;
+      font-size: 1.05rem;
+    }
 
-        .icon {
-            flex: 0 0 46px;
-            width: 46px;
-            height: 46px;
-            display: grid;
-            place-items: center;
-            color: var(--blue-dark);
-            background: #e4e9ff;
-            border-radius: 14px;
-        }
+    .contact-panel {
+      display: grid;
+      gap: 18px;
+    }
 
-        .icon svg { width: 23px; height: 23px; }
-        .contact-card p { margin: 0 0 12px; }
-        .email-link {
-            display: inline-block;
-            max-width: 100%;
-            color: var(--blue-dark);
-            font-weight: 750;
-            overflow-wrap: anywhere;
-            text-underline-offset: 3px;
-        }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: clamp(18px, 4vw, 26px);
+      background: linear-gradient(135deg, var(--soft), #f9fbff);
+      border: 1px solid var(--soft-strong);
+      border-radius: 18px;
+    }
 
-        .note {
-            margin: 20px 0 0;
-            padding: 15px 17px;
-            color: #53627a;
-            font-size: .94rem;
-            background: #f8f9fc;
-            border-left: 3px solid #aeb8ff;
-            border-radius: 0 10px 10px 0;
-        }
+    .icon {
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: var(--blue-dark);
+      background: var(--soft-strong);
+      border-radius: 14px;
+    }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            margin-top: 28px;
-            padding: 11px 17px;
-            color: white;
-            font-weight: 750;
-            text-decoration: none;
-            background: linear-gradient(110deg, var(--blue), #6977ff);
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(64, 92, 245, .2);
-            transition: transform .18s ease, box-shadow .18s ease;
-        }
+    .icon svg { width: 23px; height: 23px; }
+    .item-copy { flex: 1; }
+    .item-copy p { margin: 0 0 14px; }
 
-        .back-link:hover { transform: translateY(-1px); box-shadow: 0 13px 24px rgba(64, 92, 245, .25); }
-        a:focus-visible { outline: 3px solid #8999ff; outline-offset: 4px; border-radius: 4px; }
+    .email-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      color: var(--blue-dark);
+      font-weight: 750;
+      text-decoration: none;
+      background: rgba(64, 92, 245, .06);
+      border: 1px solid rgba(64, 92, 245, .1);
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
 
-        @media (max-width: 480px) {
-            body { padding: 14px 10px; }
-            main { padding: 24px 18px; border-radius: 18px; }
-            .contact-card { gap: 12px; }
-            .icon { flex-basis: 40px; width: 40px; height: 40px; }
-            .back-link { width: 100%; }
-        }
+    .note {
+      margin: 0;
+      padding: 14px 16px;
+      color: #53627a;
+      font-size: .94rem;
+      background: #f8f9fc;
+      border-left: 3px solid #aeb8ff;
+      border-radius: 0 10px 10px 0;
+    }
 
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
-        }
-    </style>
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 28px;
+      padding: 12px 17px;
+      color: white;
+      font-weight: 750;
+      text-decoration: none;
+      background: linear-gradient(110deg, var(--blue), #6977ff);
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(64, 92, 245, .2);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .back-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 13px 24px rgba(64, 92, 245, .25);
+    }
+
+    a:focus-visible {
+      outline: 3px solid #aeb8ff;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 14px 10px; }
+      main { padding: 24px 18px; border-radius: 18px; }
+      .contact-item { gap: 12px; }
+      .icon { flex-basis: 40px; width: 40px; height: 40px; }
+      .email-link { width: 100%; justify-content: center; }
+      .back-link { width: 100%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-<main>
+  <main>
     <p class="eyebrow">We’re here to help</p>
     <h1>Contact us</h1>
     <p class="intro">Have a question, spotted something that could work better, or have an idea for a useful tool? We’d be happy to hear from you.</p>
 
-    <section class="contact-card" aria-labelledby="email-heading">
+    <div class="contact-panel">
+      <section class="contact-item" aria-labelledby="email-heading">
         <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h12a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z" stroke="currentColor" stroke-width="1.7"/>
-                <path d="m4.5 6 7.5 6 7.5-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.75 6.75A2.25 2.25 0 0 1 6 4.5h12a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 18 19.5H6a2.25 2.25 0 0 1-2.25-2.25V6.75Z" stroke="currentColor" stroke-width="1.7"/>
+            <path d="m4.5 6 7.5 6 7.5-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </span>
-        <div>
-            <h2 id="email-heading">Send us an email</h2>
-            <p>Tell us what’s on your mind and we’ll do our best to get back to you as soon as we can.</p>
-            <a class="email-link" href="mailto:othersideofme999@gmail.com?subject=Age%20Calculator%20feedback">othersideofme999@gmail.com</a>
+
+        <div class="item-copy">
+          <h2 id="email-heading">Send us an email</h2>
+          <p>Tell us what’s on your mind and we’ll do our best to get back to you as soon as we can.</p>
+          <a class="email-link" href="mailto:othersideofme999@gmail.com?subject=Age%20Calculator%20feedback">othersideofme999@gmail.com</a>
         </div>
-    </section>
+      </section>
 
-    <p class="note">For your privacy, please don’t include sensitive personal information in your message. If you’re reporting an issue, a brief description of what happened is helpful.</p>
+      <p class="note">For your privacy, please don’t include sensitive personal information in your message. If you’re reporting an issue, a brief description of what happened is helpful.</p>
+    </div>
 
-    <a class="back-link" href="index.html">← Back to the Age Calculator</a>
-</main>
+    <a class="back-link" href="index.html">Back to Age Calculator</a>
+  </main>
 </body>
 </html>
