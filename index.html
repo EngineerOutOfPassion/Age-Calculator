@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Age Calculator - Calculate Your Exact Age</title>
+<meta name="description" content="Calculate your exact age in years, months and days using our free online age calculator.">
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f5fb;
+  color: #202b42;
+}
+
+header {
+  background: #243b80;
+  color: white;
+  padding: 22px;
+  text-align: center;
+}
+
+header h1 { margin: 0 0 8px; }
+header p { margin: 0; }
+
+main {
+  max-width: 620px;
+  margin: 45px auto;
+  padding: 28px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 25px #00000010;
+}
+
+label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ccd3e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 8px;
+  background: #3156bd;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+button:hover { background: #203e94; }
+
+#result {
+  display: none;
+  margin-top: 25px;
+  padding: 20px;
+  background: #edf3ff;
+  border-radius: 12px;
+  text-align: center;
+}
+
+#result h2 { color: #243b80; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat {
+  padding: 12px;
+  background: white;
+  border-radius: 8px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+  margin-top: 7px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #657087;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Age Calculator</h1>
+  <p>Calculate your exact age in years, months and days</p>
+</header>
+
+<main>
+  <h2>Calculate Your Age</h2>
+  <p>Enter your date of birth below.</p>
+
+  <label for="dob">Date of Birth</label>
+  <input type="date" id="dob">
+
+  <button onclick="calculateAge()">Calculate Age</button>
+
+  <div id="result" aria-live="polite">
+    <h2>Your Exact Age</h2>
+    <h1 id="age"></h1>
+
+    <div class="stats">
+      <div class="stat">
+        Total Months
+        <strong id="months"></strong>
+      </div>
+      <div class="stat">
+        Total Days
+        <strong id="days"></strong>
+      </div>
+      <div class="stat">
+        Born On
+        <strong id="weekday"></strong>
+      </div>
+      <div class="stat">
+        Next Birthday
+        <strong id="birthday"></strong>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>Free Age Calculator | Calculate your age instantly</p>
+</footer>
+
+<script>
+function calculateAge() {
+  const input = document.getElementById("dob").value;
+
+  if (!input) {
+    alert("Please select your date of birth.");
+    return;
+  }
+
+  const [year, month, day] = input.split("-").map(Number);
+
+  const dob = new Date(year, month - 1, day);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (dob > today) {
+    alert("Date of birth cannot be in the future.");
+    return;
+  }
+
+  let years = today.getFullYear() - year;
+  let months = today.getMonth() + 1 - month;
+  let days = today.getDate() - day;
+
+  if (days < 0) {
+    months--;
+    const previousMonthDays =
+      new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    days += previousMonthDays;
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  const totalMonths = years * 12 + months;
+
+  const utcDob = Date.UTC(year, month - 1, day);
+  const utcToday = Date.UTC(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+
+  const totalDays = Math.round(
+    (utcToday - utcDob) / 86400000
+  );
+
+  const weekday = dob.toLocaleDateString("en-IN", {
+    weekday: "long"
+  });
+
+  let nextYear = today.getFullYear();
+  let nextMonth = month - 1;
+
+  const birthdayThisYear = new Date(nextYear, nextMonth, day);
+
+  if (birthdayThisYear < today) {
+    nextYear++;
+  }
+
+  // Handle February 29 in non-leap years
+  const nextBirthdayDay =
+    month === 2 && day === 29 &&
+    !isLeapYear(nextYear) ? 28 : day;
+
+  const nextBirthday = new Date(
+    nextYear, nextMonth, nextBirthdayDay
+  );
+
+  const daysUntil = Math.round(
+    (Date.UTC(nextBirthday.getFullYear(),
+      nextBirthday.getMonth(),
+      nextBirthday.getDate()) - utcToday) / 86400000
+  );
+
+  document.getElementById("age").textContent =
+    ${years} Years, ${months} Months, ${days} Days;
+
+  document.getElementById("months").textContent =
+    totalMonths.toLocaleString("en-IN");
+
+  document.getElementById("days").textContent =
+    totalDays.toLocaleString("en-IN");
+
+  document.getElementById("weekday").textContent = weekday;
+
+  document.getElementById("birthday").textContent =
+    daysUntil === 0 ? "Today!" : ${daysUntil} days;
+
+  document.getElementById("result").style.display = "block";
+}
+
+function isLeapYear(year) {
+  return year % 4 === 0 &&
+    (year % 100 !== 0 || year % 400 === 0);
+}
+
+document.getElementById("dob").max =
+  new Date().toLocaleDateString("en-CA");
+</script>
+
+</body>
+</html>
