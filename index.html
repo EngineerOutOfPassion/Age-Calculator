@@ -1,46 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Age Calculator - Calculate Your Exact Age</title>
-  <meta name="description" content="Calculate your exact age in years, months and days using our free online age calculator.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Age Calculator | Exact Age in Years, Months & Days</title>
+  <meta name="description" content="Calculate your exact age in years, months, and days with a clean, modern age calculator." />
   <style>
     :root {
-      color-scheme: light;
-      --ink: #15213d;
-      --ink-soft: #475574;
-      --muted: #64718a;
-      --blue: #405cf5;
-      --blue-dark: #293bb5;
-      --line: #e7ecf8;
-      --shadow: 0 24px 70px rgba(27, 43, 94, 0.12);
+      --bg: #edf3ff;
+      --panel: rgba(255, 255, 255, 0.75);
+      --panel-strong: rgba(255, 255, 255, 0.92);
+      --card: #ffffff;
+      --ink: #12213d;
+      --ink-soft: #4a5979;
+      --muted: #6d7d99;
+      --line: rgba(125, 144, 183, 0.22);
+      --blue: #4467ff;
+      --blue-2: #5a7cff;
+      --blue-deep: #1d2d5e;
+      --teal: #3ec8b3;
+      --shadow: 0 25px 60px rgba(19, 35, 77, 0.15);
+      --shadow-soft: 0 12px 30px rgba(68, 103, 255, 0.12);
+      --radius: 24px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      min-height: 100vh;
       margin: 0;
-      display: flex;
-      flex-direction: column;
-      color: var(--ink);
+      min-height: 100vh;
       font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(98, 122, 255, 0.18), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(59, 194, 162, 0.14), transparent 28%),
-        #f5f8ff;
+        radial-gradient(circle at top left, rgba(84, 131, 255, 0.20), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(62, 200, 179, 0.18), transparent 26%),
+        linear-gradient(180deg, #f4f8ff 0%, #edf3ff 100%);
+    }
+
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      padding: 28px 18px 40px;
     }
 
     header {
-      padding: 22px 20px 18px;
-      color: white;
-      background: linear-gradient(120deg, #1d2d5b 0%, #2f4fcf 48%, #3d5af5 100%);
-      box-shadow: 0 10px 28px rgba(44, 67, 149, 0.18);
+      position: relative;
+      padding: 24px 26px 18px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #162a59 0%, #2a4dc6 42%, #4a6af7 100%);
+      box-shadow: 0 18px 42px rgba(54, 75, 166, 0.22);
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: -30% auto auto -14%;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 50%;
+      filter: blur(12px);
     }
 
     .top-nav {
+      position: relative;
+      z-index: 1;
       width: min(100%, 980px);
       margin: 0 auto 18px;
       display: flex;
@@ -48,14 +79,14 @@
       justify-content: space-between;
       gap: 12px;
       padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 16px;
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
       backdrop-filter: blur(8px);
     }
 
     .brand {
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 800;
@@ -70,223 +101,338 @@
     }
 
     .nav-links a {
-      padding: 7px 10px;
-      color: rgba(255,255,255,0.9);
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: rgba(255,255,255,0.86);
+      text-decoration: none;
       font-size: 0.88rem;
       font-weight: 700;
-      text-decoration: none;
-      border-radius: 9px;
       transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
 
     .nav-links a:hover,
     .nav-links a[aria-current="page"] {
       background: rgba(255,255,255,0.12);
-      color: white;
+      color: #fff;
       transform: translateY(-1px);
     }
 
-    .title-wrap { width: min(100%, 760px); margin: 0 auto; text-align: center; }
-    header h1 { margin: 0 0 6px; font-size: clamp(1.7rem, 4vw, 2.4rem); letter-spacing: -0.05em; line-height: 1.1; }
-    header p { margin: 0; color: rgba(255,255,255,0.82); }
+    .title-wrap {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 760px);
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 6px;
+    }
+
+    .title-wrap h1 {
+      margin: 0 0 6px;
+      color: #fff;
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+    }
+
+    .title-wrap p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 1.02rem;
+    }
 
     main {
-      width: min(100% - 32px, 690px);
-      margin: auto;
-      padding: clamp(24px, 5vw, 42px);
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(255,255,255,0.9);
-      border-radius: 28px;
+      position: relative;
+      z-index: 1;
+      width: min(100%, 700px);
+      margin: -22px auto 0;
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      padding: clamp(24px, 4vw, 40px);
+    }
+
+    .intro {
+      margin-bottom: 10px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin: 0 0 14px;
-      color: var(--blue-dark);
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
+      gap: 9px;
+      margin: 0 0 12px;
+      color: var(--blue-deep);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      font-weight: 800;
     }
 
     .eyebrow::before {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #3bc2a2;
-      box-shadow: 0 0 0 6px rgba(59,194,162,0.12);
       content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 6px rgba(62,200,179,0.12);
     }
 
-    .intro h2 { margin: 0 0 10px; font-size: clamp(1.9rem, 4vw, 2.6rem); letter-spacing: -0.055em; line-height: 1.05; }
-    .intro p { margin: 0; color: var(--muted); line-height: 1.65; font-size: 1.02rem; }
-    .field { margin-top: 28px; }
+    .intro h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -0.06em;
+      line-height: 1.06;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .field {
+      margin-top: 28px;
+    }
 
     label {
       display: block;
       margin-bottom: 10px;
       color: var(--ink-soft);
-      font-size: 0.92rem;
+      font-size: 0.93rem;
       font-weight: 700;
     }
 
     input {
       width: 100%;
-      min-height: 56px;
-      padding: 13px 15px;
+      height: 58px;
+      padding: 14px 16px;
+      border: 1px solid rgba(117, 138, 184, 0.28);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.78);
       color: var(--ink);
       font: inherit;
-      background: #fbfcff;
-      border: 1px solid #d9e1f5;
-      border-radius: 14px;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
     input:focus-visible {
       outline: none;
-      background: white;
-      border-color: var(--blue);
-      box-shadow: 0 0 0 4px rgba(64,92,245,0.13);
+      border-color: rgba(68,103,255,0.7);
+      box-shadow: 0 0 0 4px rgba(68,103,255,0.14);
+      background: rgba(255,255,255,0.96);
     }
 
-    .helper { margin-top: 10px; color: var(--muted); font-size: 0.82rem; }
+    .helper {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
 
     button {
       width: 100%;
-      min-height: 58px;
-      margin-top: 20px;
-      padding: 14px 18px;
+      height: 60px;
+      margin-top: 22px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-2) 100%);
+      box-shadow: 0 14px 24px rgba(68,103,255,0.24);
       color: white;
       font: inherit;
       font-weight: 800;
       letter-spacing: 0.01em;
-      border: 0;
-      border-radius: 14px;
-      background: linear-gradient(120deg, var(--blue), #6977ff);
-      box-shadow: 0 10px 20px rgba(64,92,245,0.2);
       cursor: pointer;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
     }
 
-    button:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 14px 24px rgba(64,92,245,0.25); }
-    button:active { transform: translateY(0); }
-    button:focus-visible { outline: 3px solid #aeb8ff; outline-offset: 3px; }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 28px rgba(68,103,255,0.26);
+      filter: brightness(1.04);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button:focus-visible {
+      outline: 3px solid rgba(160,174,255,0.9);
+      outline-offset: 3px;
+    }
 
     #result {
       display: none;
       margin-top: 28px;
-      padding: 24px;
+      padding: 24px 22px 18px;
       text-align: center;
-      background: linear-gradient(145deg, #edf4ff, #f8fbff);
-      border: 1px solid #e4ecff;
+      border: 1px solid rgba(108, 127, 177, 0.18);
       border-radius: 20px;
+      background: linear-gradient(180deg, rgba(240,246,255,0.96), rgba(255,255,255,0.96));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
     }
 
-    #result h2 { margin: 0 0 8px; color: var(--blue-dark); font-size: 1.05rem; letter-spacing: 0.05em; text-transform: uppercase; }
-    #age { margin: 0 0 22px; font-size: clamp(1.75rem, 5vw, 2.55rem); letter-spacing: -0.05em; line-height: 1.1; }
-    .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    #result h2 {
+      margin: 0 0 10px;
+      color: var(--blue-deep);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    #age {
+      margin: 0 0 20px;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
 
     .stat {
       padding: 16px 12px;
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 650;
-      background: rgba(255,255,255,0.88);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(126, 145, 185, 0.18);
       border-radius: 14px;
-      box-shadow: 0 5px 14px rgba(38,58,105,0.04);
+      box-shadow: var(--shadow-soft);
+      color: var(--muted);
+      font-size: 0.83rem;
+      font-weight: 700;
     }
 
-    .stat strong { display: block; margin-top: 7px; color: var(--ink); font-size: clamp(1.15rem, 3vw, 1.55rem); letter-spacing: -0.035em; }
-    footer { padding: 20px; color: var(--muted); text-align: center; font-size: 0.88rem; }
-    footer p { margin: 0; }
-    .footer-links { margin-top: 8px; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
-    footer a { color: var(--blue-dark); text-decoration: none; font-weight: 700; }
-    footer a:hover { text-decoration: underline; }
+    .stat strong {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink);
+      font-size: clamp(1.15rem, 3vw, 1.55rem);
+      letter-spacing: -0.04em;
+    }
+
+    footer {
+      padding: 24px 10px 8px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    .footer-links {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      color: var(--blue-deep);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 720px) {
-      main { width: min(100% - 20px, 650px); margin: 24px auto; padding: 22px 18px; border-radius: 20px; }
-      .intro h2 { line-height: 1.12; }
+      .page-shell { padding-left: 14px; padding-right: 14px; }
+      header { padding-left: 18px; padding-right: 18px; }
+      .top-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-links { width: 100%; }
+      main { margin-top: -12px; }
     }
 
     @media (max-width: 540px) {
-      .top-nav { flex-direction: column; align-items: center; }
-      .nav-links { width: 100%; }
-      header { padding: 18px 14px 14px; }
-      main { width: min(100% - 16px, 650px); margin: 18px auto; padding: 20px 14px; border-radius: 18px; }
-      #result { padding: 20px 14px; }
-      .stats { grid-template-columns: 1fr; gap: 9px; }
-      .stat { padding: 14px 8px; }
+      .stats { grid-template-columns: 1fr; }
+      .nav-links { gap: 4px; }
+      .nav-links a { padding: 7px 9px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <nav class="top-nav" aria-label="Main navigation">
-      <a class="brand" href="index.html">Age Calculator</a>
-      <div class="nav-links">
-        <a href="index.html" aria-current="page">Calculator</a>
+  <div class="page-shell">
+    <header>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a class="brand" href="index.html">Age Calculator</a>
+        <div class="nav-links">
+          <a href="index.html" aria-current="page">Calculator</a>
+          <a href="about.html">About</a>
+          <a href="Contact.html">Contact</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+      </nav>
+
+      <div class="title-wrap">
+        <h1>Age Calculator</h1>
+        <p>Calculate your exact age in years, months and days</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="form-title">
+        <p class="eyebrow">A little more perspective</p>
+        <h2 id="form-title">How long have you been you?</h2>
+        <p>Enter your date of birth to discover your exact age and a few quick details about your timeline.</p>
+      </section>
+
+      <div class="field">
+        <label for="dob">Your date of birth</label>
+        <input type="date" id="dob" autocomplete="bday" aria-describedby="dob-help" />
+        <div id="dob-help" class="helper">We use your local date to calculate your exact age.</div>
+      </div>
+
+      <button id="calculateBtn" type="button">Calculate my age</button>
+
+      <section id="result" aria-live="polite" aria-atomic="true">
+        <h2>Your exact age</h2>
+        <h1 id="age"></h1>
+        <div class="stats">
+          <div class="stat">Total months<strong id="months"></strong></div>
+          <div class="stat">Total days<strong id="days"></strong></div>
+          <div class="stat">Born on<strong id="weekday"></strong></div>
+          <div class="stat">Next birthday<strong id="birthday"></strong></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Free Age Calculator <span aria-hidden="true">·</span> Your age, at a glance</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">Calculator</a>
+        <span aria-hidden="true">·</span>
         <a href="about.html">About</a>
+        <span aria-hidden="true">·</span>
         <a href="Contact.html">Contact</a>
+        <span aria-hidden="true">·</span>
         <a href="privacy.html">Privacy</a>
+        <span aria-hidden="true">·</span>
         <a href="terms.html">Terms</a>
-      </div>
-    </nav>
-    <div class="title-wrap">
-      <h1>Age Calculator</h1>
-      <p>Calculate your exact age in years, months and days</p>
-    </div>
-  </header>
-
-  <main>
-    <section class="intro" aria-labelledby="form-title">
-      <p class="eyebrow">A little more perspective</p>
-      <h2 id="form-title">How long have you been you?</h2>
-      <p>Enter your date of birth to discover your exact age and a few fun details.</p>
-    </section>
-
-    <div class="field">
-      <label for="dob">Your date of birth</label>
-      <input type="date" id="dob" autocomplete="bday" aria-describedby="dob-help">
-      <div id="dob-help" class="helper">We use your local date to calculate exact age.</div>
-    </div>
-
-    <button id="calculateBtn" type="button">Calculate my age</button>
-
-    <section id="result" aria-live="polite" aria-atomic="true">
-      <h2>Your exact age</h2>
-      <h1 id="age"></h1>
-      <div class="stats">
-        <div class="stat">Total months<strong id="months"></strong></div>
-        <div class="stat">Total days<strong id="days"></strong></div>
-        <div class="stat">Born on<strong id="weekday"></strong></div>
-        <div class="stat">Next birthday<strong id="birthday"></strong></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Free Age Calculator <span aria-hidden="true">·</span> Your age, at a glance</p>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html">Calculator</a><span aria-hidden="true">·</span>
-      <a href="about.html">About</a><span aria-hidden="true">·</span>
-      <a href="Contact.html">Contact</a><span aria-hidden="true">·</span>
-      <a href="privacy.html">Privacy</a><span aria-hidden="true">·</span>
-      <a href="terms.html">Terms</a>
-    </nav>
-  </footer>
+      </nav>
+    </footer>
+  </div>
 
   <script>
     function calculateAge() {
       const input = document.getElementById("dob").value;
+
       if (!input) {
         alert("Please select your date of birth.");
         return;
@@ -312,11 +458,13 @@
       let days = todayStart.getDate() - dob.getDate();
 
       if (days < 0) {
-        days += new Date(todayStart.getFullYear(), todayStart.getMonth(), 0).getDate();
-        months--;
+        const previousMonthDays = new Date(todayStart.getFullYear(), todayStart.getMonth(), 0).getDate();
+        days += previousMonthDays;
+        months -= 1;
       }
+
       if (months < 0) {
-        years--;
+        years -= 1;
         months += 12;
       }
 
@@ -327,11 +475,12 @@
       const weekday = dob.toLocaleDateString("en-IN", { weekday: "long" });
 
       let nextYear = todayStart.getFullYear();
-      const monthIndex = dob.getMonth();
-      const birthdayThisYear = new Date(nextYear, monthIndex, dob.getDate());
-      if (birthdayThisYear < todayStart) nextYear++;
-      const nextDay = monthIndex === 1 && dob.getDate() === 29 && !isLeapYear(nextYear) ? 28 : dob.getDate();
-      const nextBirthday = new Date(nextYear, monthIndex, nextDay);
+      const nextMonth = dob.getMonth();
+      const birthdayThisYear = new Date(nextYear, nextMonth, dob.getDate());
+      if (birthdayThisYear < todayStart) nextYear += 1;
+
+      const nextBirthdayDay = nextMonth === 1 && dob.getDate() === 29 && !isLeapYear(nextYear) ? 28 : dob.getDate();
+      const nextBirthday = new Date(nextYear, nextMonth, nextBirthdayDay);
       const daysUntil = Math.round((Date.UTC(nextBirthday.getFullYear(), nextBirthday.getMonth(), nextBirthday.getDate()) - utcToday) / 86400000);
 
       document.getElementById("age").textContent = `${years} Years, ${months} Months, ${days} Days`;
@@ -352,6 +501,7 @@
     const today = new Date();
     const todayLocal = new Date(today.getFullYear(), today.getMonth(), today.getDate());
     dobInput.max = `${todayLocal.getFullYear()}-${String(todayLocal.getMonth() + 1).padStart(2, "0")}-${String(todayLocal.getDate()).padStart(2, "0")}`;
+
     calculateBtn.addEventListener("click", calculateAge);
     dobInput.addEventListener("keydown", function (event) {
       if (event.key === "Enter") calculateAge();
