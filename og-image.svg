@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Free Age Calculator</title>
+  <desc id="desc">A modern banner for a free online age calculator website.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#122a55"/>
+      <stop offset="50%" stop-color="#2f4dc0"/>
+      <stop offset="100%" stop-color="#4b6dff"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.92"/>
+      <stop offset="100%" stop-color="#edf4ff" stop-opacity="0.94"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1000" cy="90" r="220" fill="#9ecbff" fill-opacity="0.12"/>
+  <circle cx="200" cy="520" r="190" fill="#7ae8d3" fill-opacity="0.12"/>
+
+  <rect x="108" y="118" width="984" height="394" rx="28" fill="url(#panel)"/>
+  <rect x="156" y="176" width="300" height="16" rx="8" fill="#dfe8ff"/>
+  <rect x="156" y="214" width="540" height="62" rx="18" fill="#dfe8ff"/>
+  <text x="156" y="306" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="800" fill="#17233d">Age Calculator</text>
+  <text x="156" y="358" font-family="Segoe UI, Arial, sans-serif" font-size="28" fill="#4c5d7a">Calculate your exact age in years, months and days</text>
+
+  <g transform="translate(760 196)">
+    <rect x="0" y="0" width="220" height="160" rx="18" fill="#ffffff"/>
+    <rect x="28" y="28" width="165" height="12" rx="6" fill="#dfe8ff"/>
+    <rect x="28" y="56" width="112" height="12" rx="6" fill="#dfe8ff"/>
+    <rect x="28" y="90" width="164" height="42" rx="14" fill="#eff5ff"/>
+    <text x="48" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#17233d">29Y 4M</text>
+  </g>
+
+  <g transform="translate(156 460)">
+    <rect x="0" y="0" width="180" height="18" rx="9" fill="#a4f1d8"/>
+    <rect x="206" y="0" width="130" height="18" rx="9" fill="#dfe8ff"/>
+    <rect x="362" y="0" width="180" height="18" rx="9" fill="#dfe8ff"/>
+  </g>
+</svg>
